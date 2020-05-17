@@ -7,7 +7,7 @@ class Server {
 	private readonly server: ApolloServer;
 
 	constructor() {
-		this.server = new ApolloServer(middleware);
+		this.server = new ApolloServer({ ...middleware, playground: true });
 	}
 
 	async start() {
