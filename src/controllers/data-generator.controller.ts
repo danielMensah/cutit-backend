@@ -93,7 +93,8 @@ export default class DataGeneratorController {
 				first_name: Faker.name.firstName(),
 				last_name: Faker.name.lastName(),
 				email: Faker.internet.email(),
-				main_phone: Faker.phone.phoneNumber()
+				main_phone: Faker.phone.phoneNumber(),
+				img_url: Faker.image.imageUrl()
 			};
 
 			const result = await UserModel.create(user);
