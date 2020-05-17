@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "start": "ts-node build/server.js",
-    "test": "mocha -r ts-node/register build/**/*.test.js"
+    "start": "tsc && node build/server.js",
+    "test": "tsc && mocha -r ts-node/register build/**/*.test.js"
   },
   "keywords": [],
   "author": "",
