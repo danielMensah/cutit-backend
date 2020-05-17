@@ -7,7 +7,14 @@ class Server {
 	private readonly server: ApolloServer;
 
 	constructor() {
-		this.server = new ApolloServer({ ...middleware, playground: true });
+		this.server = new ApolloServer({
+			...middleware,
+			playground: true,
+			engine: {
+				apiKey: "service:Cut-it:2u7BaOmzd92U32q_OJWzCw",
+			},
+			introspection: true
+		});
 	}
 
 	async start() {
