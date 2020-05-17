@@ -1,5 +1,3 @@
-import { ServiceModel } from '../factories';
-
 export default {
 	Query: {
 		admins: async (_, args, { dataSources }) => dataSources.userController.getUsers('admin'),
@@ -18,6 +16,7 @@ export default {
 		customerBooking: async (_, { bookingId }, { dataSources }) => dataSources.customerController.getBooking(bookingId),
 
 		shopList: async (_, { searchTerm }, { dataSources }) => dataSources.shopController.getShops(searchTerm),
+		shopDetails: async (_, { shopId }, { dataSources }) => dataSources.shopController.getShopDetails(shopId)
 	},
 	Mutation: {
 		addBarber: async (_, userData, { dataSources }) => dataSources.userController.createUser(userData),
@@ -26,9 +25,6 @@ export default {
 		createCustomer: async (_, userData, { dataSources }) => dataSources.userController.createUser(userData),
 		createShop: async (_, shopData, { dataSources }) => dataSources.ownerController.createShop(shopData),
 		createBooking: async (_, bookingData, { dataSources }) => dataSources.customerController.createBooking(bookingData),
-		createService: async (_, serviceData, { dataSources }) => {
-			dataSources.ownerController.init(ServiceModel);
-			return dataSources.ownerController.createService(serviceData)
-		}
+		createService: async (_, serviceData, { dataSources }) => dataSources.ownerController.createService(serviceData)
 	}
 };

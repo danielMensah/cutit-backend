@@ -13,8 +13,8 @@ export function ShopAvailabilityFactory(sequelize: Sequelize): Static {
 		},
 		shop_id: {
 			type: DataTypes.INTEGER,
-			allowNull: false,
-			primaryKey: true
+			unique: true,
+			allowNull: false
 		},
 		day1: {
 			type: DataTypes.TEXT,

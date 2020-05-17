@@ -1,6 +1,6 @@
 import { gql } from 'apollo-server';
 
-export default gql`    
+export default gql`
     type Query {
         admins: [Admin]!
         admin(id: ID!): Admin!
@@ -16,8 +16,9 @@ export default gql`
 
         customerBookings(customerId: ID!): [CustomerBooking]
         customerBooking(bookingId: ID!): CustomerBooking
-        
+
         shopList(searchTerm: String): [Shop]
+        shopDetails(shopId: ID!): ShopDetails
     }
     type Mutation {
         createCustomer(
@@ -30,7 +31,11 @@ export default gql`
         ): Customer!
 
         createAdmin(
-            firebase_id: String!, user_type: String!, first_name: String!, last_name: String!, email: String!
+            firebase_id: String!, 
+            user_type: String!, 
+            first_name: String!, 
+            last_name: String!, 
+            email: String!
         ): Admin!
 
         createOwner(
@@ -66,7 +71,8 @@ export default gql`
             first_name: String!,
             last_name: String!,
             email: String!,
-            main_phone: String!
+            main_phone: String!,
+            img_url: String!
         ): Barber!
 
         createBooking(
@@ -80,9 +86,9 @@ export default gql`
             booking_fee: Float!,
             comment: String
         ): CustomerBooking!
-        
+
         createService(
-        	  ownerId: Int!,
+            ownerId: Int!,
             shop_id: Int!,
             name: String!,
             description: String,

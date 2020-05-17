@@ -13,4 +13,16 @@ export default gql`
         city: String!,
         country: String!
     }
+    type Availability {
+        day: String!,
+        f: String,
+        t: String
+    }
+    type ShopDetails {
+        shop_id: ID!,
+        name: String!,
+        email: String!,
+        barbers: [Barber]!,
+        shop_availability: [Availability]!
+    }
 `;

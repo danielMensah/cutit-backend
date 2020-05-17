@@ -59,6 +59,9 @@ export function UserFactory (sequelize: Sequelize): Static {
 		country: {
 			type: DataTypes.TEXT
 		},
+		img_url: {
+			type: DataTypes.TEXT
+		},
 		created_at: {
 			type: DataTypes.DATE,
 			allowNull: false,

@@ -19,6 +19,7 @@ export default gql`
         shop: String!,
         barberId: Int!,
         barber: String!,
+        barber_img: String!,
         serviceId: Int!,
         service: String!,
         comment: String!,

@@ -36,6 +36,7 @@ export interface IBarber {
 	email: string;
 	shop_id: number;
 	main_phone: string;
+	img_url: string;
 	created_at?: Date;
 	updated_at?: Date;
 }

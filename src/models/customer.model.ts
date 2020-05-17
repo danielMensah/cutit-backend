@@ -1,6 +1,6 @@
-import { IUser } from '../controllers/user.controller';
 import { IService } from '../controllers/owner.controller';
 import { IShop } from './shop.model';
+import { IBarber, ICustomer } from './user.model';
 
 export interface ICustomerBooking {
 	bok_id?: number;
@@ -18,8 +18,8 @@ export interface ICustomerBooking {
 	created_by: number;
 	updated_at?: string;
 	updated_by: number;
-	customer_booking_customer?: IUser;
-	customer_booking_barber?: IUser;
+	customer_booking_customer?: ICustomer;
+	customer_booking_barber?: IBarber;
 	customer_booking_shop?: IShop;
 	customer_booking_service?: IService;
 }
@@ -30,6 +30,7 @@ export interface ICustomerBookingReturn {
 	shop: string;
 	barberId: number;
 	barber: string;
+	barber_img: string;
 	serviceId: number;
 	service: string;
 	comment: string;

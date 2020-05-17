@@ -10,6 +10,7 @@ export default gql`
         last_name: String!,
         email: String!,
         main_phone: String!,
+        img_url: String!,
         created_at: String,
         updated_at: String
     }

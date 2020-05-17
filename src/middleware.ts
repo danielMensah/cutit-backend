@@ -1,10 +1,11 @@
-import path from 'path';
+import * as path from 'path';
 import { fileLoader, mergeTypes, mergeResolvers } from 'merge-graphql-schemas';
 import UserController from './controllers/user.controller';
 import BarberController from './controllers/barber.controller';
 import CustomerController from './controllers/customer.controller';
 import OwnerController from './controllers/owner.controller';
-import { ShopController } from './controllers/shop.controller';
+import ShopController from './controllers/shop.controller';
+import { ApolloServerExpressConfig } from 'apollo-server-express';
 
 const typesArray = fileLoader(path.join(__dirname, './schemas'));
 const resolversArray = fileLoader(path.join(__dirname, './resolvers'));
@@ -24,4 +25,4 @@ export default {
 	typeDefs,
 	resolvers,
 	dataSources
-}
+} as ApolloServerExpressConfig
