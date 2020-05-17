@@ -3,7 +3,7 @@ import { Static } from '../factories/user.factory';
 import { CustomerBookingModel } from '../factories';
 import { ICustomerBooking, ICustomerBookingReturn } from '../models/customer.model';
 
-export default class CustomerController extends RESTDataSource {
+export default class CustomerController  {
 	model: Static = CustomerBookingModel;
 
 	init(model: Static) {
@@ -19,6 +19,7 @@ export default class CustomerController extends RESTDataSource {
 			id: data.bok_id,
 			barberId: data.customer_booking_barber.user_id,
 			barber: data.customer_booking_barber.first_name,
+			barber_img: data.customer_booking_barber.img_url,
 			shopId: data.customer_booking_shop.sho_id,
 			shop: data.customer_booking_shop.name,
 			serviceId: data.customer_booking_service.ser_id,
@@ -46,6 +47,7 @@ export default class CustomerController extends RESTDataSource {
 				id: data.bok_id,
 				barberId: data.customer_booking_barber.user_id,
 				barber: data.customer_booking_barber.first_name,
+				barber_img: data.customer_booking_barber.img_url,
 				shopId: data.customer_booking_shop.sho_id,
 				shop: data.customer_booking_shop.name,
 				serviceId: data.customer_booking_service.ser_id,

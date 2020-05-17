@@ -3,7 +3,7 @@ import { UserModel } from '../factories';
 import { userTypes } from '../types';
 import { Static } from '../factories/user.factory';
 
-export default class UserController extends RESTDataSource {
+export default class UserController  {
 	model: Static = UserModel;
 
 	public async getUser<T>(id: number): Promise<T> {

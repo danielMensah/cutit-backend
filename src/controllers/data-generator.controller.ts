@@ -1,10 +1,17 @@
 import * as Faker from 'faker/locale/en_GB';
 import { userTypes } from '../types';
-import { CustomerBookingModel, dbConfig, ServiceModel, ShopModel, UserModel } from '../factories';
+import {
+	CustomerBookingModel,
+	dbConfig,
+	ServiceModel,
+	ShopAvailabilityModel,
+	ShopModel,
+	UserModel
+} from '../factories';
 import { IService } from './owner.controller';
-import { ICustomerBooking } from '../models/customer.model';
+import { ICustomerBooking, ICustomerBookingReturn } from '../models/customer.model';
 import { IAdmin, IBarber, ICustomer, IOwner } from '../models/user.model';
-import { IShop } from '../models/shop.model';
+import { IShop, IShopAvailability } from '../models/shop.model';
 
 export default class DataGeneratorController {
 	synced: boolean = false;
@@ -123,7 +130,7 @@ export default class DataGeneratorController {
 		return users;
 	}
 
-	public async createShop(ownerId: number, quantity: number = 1) {
+	public async createShop(ownerId: number, quantity: number = 1): Promise<IShop[]> {
 		await this._sync();
 
 		let shops: IShop[] = [];
@@ -152,7 +159,7 @@ export default class DataGeneratorController {
 		return shops;
 	}
 
-	public async createService(ownerId: number, shopId: number, quantity: number = 1) {
+	public async createService(ownerId: number, shopId: number, quantity: number = 1): Promise<IService[]> {
 		await this._sync();
 
 		let services: IService[] = [];
@@ -186,7 +193,7 @@ export default class DataGeneratorController {
 		serviceId: number,
 		serviceAmount: number,
 		quantity: number = 1
-	) {
+	): Promise<ICustomerBooking[]> {
 		await this._sync();
 
 		let customerBookings: ICustomerBooking[] = [];
@@ -215,10 +222,33 @@ export default class DataGeneratorController {
 
 		return customerBookings;
 	}
+
+	public async createShopAvailability(ownerId: number, shop_id: number): Promise<IShopAvailability> {
+		const shop_av: IShopAvailability = {
+			shop_id,
+			day1: '09:00 - 17:00',
+			day2: '09:00 - 17:00',
+			day3: '09:00 - 17:00',
+			day4: '09:00 - 17:00',
+			day5: '09:00 - 17:00',
+			day6: 'Closed',
+			day7: 'Closed',
+			created_by: ownerId,
+			updated_by: ownerId
+		};
+
+		const result = await ShopAvailabilityModel.create(shop_av);
+
+		return result.dataValues;
+	}
 }
 
 // const dataGeneratorController = new DataGeneratorController();
-//
+
+// [1, 2, 3, 4, 5, 6, 7, 8, 9].forEach(id => {
+// 	dataGeneratorController.createShopAvailability(Faker.random.number({ min: 9, max: 12 }), id)
+// 		.then((res) => console.log(res.sav_id))
+// });
 // dataGeneratorController.createOwner(4).then(result => {
 // 	result.forEach(owner => {
 // 		dataGeneratorController.createShop(owner.user_id, 2).then(() => {

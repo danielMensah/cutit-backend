@@ -1,7 +1,7 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
 import { Static } from '../factories/user.factory';
 
-export default class BarberController extends RESTDataSource {
+export default class BarberController {
 	public model: Static;
 
 	init(model: Static) {

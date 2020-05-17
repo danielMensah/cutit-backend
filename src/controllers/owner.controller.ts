@@ -1,5 +1,5 @@
 import { Static } from '../factories/user.factory';
-import { ShopModel } from '../factories';
+import { ServiceModel, ShopModel } from '../factories';
 import * as _ from 'lodash';
 import { RESTDataSource } from 'apollo-datasource-rest';
 import { IShop } from '../models/shop.model';
@@ -20,7 +20,7 @@ export interface IService {
 	updated_by?: number;
 }
 
-export default class OwnerController extends RESTDataSource {
+export default class OwnerController  {
 	model: Static = ShopModel;
 
 	init(model: Static) {
@@ -61,7 +61,7 @@ export default class OwnerController extends RESTDataSource {
 
 		const service = _.omit(serviceData, 'ownerId');
 
-		const x = await this.model.create(service);
+		const x = await ServiceModel.create(service);
 		return x.dataValues;
 	}
 }
