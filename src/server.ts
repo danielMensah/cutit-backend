@@ -1,7 +1,5 @@
 import { dbConfig } from './factories';
 
-require('dotenv').config();
-
 import { ApolloServer } from 'apollo-server';
 import middleware from './middleware';
 
