@@ -1,5 +1,4 @@
 import * as Faker from 'faker/locale/en_GB';
-import { userTypes } from '../types';
 import {
 	CustomerBookingModel,
 	dbConfig,
@@ -9,16 +8,16 @@ import {
 	UserModel
 } from '../factories';
 import { IService } from './owner.controller';
-import { ICustomerBooking, ICustomerBookingReturn } from '../models/customer.model';
+import { ICustomerBooking } from '../models/customer.model';
 import { IAdmin, IBarber, ICustomer, IOwner } from '../models/user.model';
 import { IShop, IShopAvailability } from '../models/shop.model';
 
 export default class DataGeneratorController {
 	synced: boolean = false;
 
-	private async _sync() {
+	public async _sync(db: string = null, force: boolean = false) {
 		if (!this.synced) {
-			await dbConfig.sync();
+			await dbConfig(db).sync({ force });
 			this.synced = true;
 		} else {
 			console.log('synced already');
@@ -26,8 +25,6 @@ export default class DataGeneratorController {
 	}
 
 	public async createAdmin(quantity: number = 1): Promise<IAdmin[]> {
-		await this._sync();
-
 		let users: IAdmin[] = [];
 		let counter = 0;
 
@@ -50,8 +47,6 @@ export default class DataGeneratorController {
 	}
 
 	public async createOwner(quantity: number = 1): Promise<IOwner[]> {
-		await this._sync();
-
 		let users: IOwner[] = [];
 		let counter = 0;
 
@@ -80,8 +75,6 @@ export default class DataGeneratorController {
 	}
 
 	public async createBarber(shopId: number, quantity: number = 1): Promise<IBarber[]> {
-		await this._sync();
-
 		let users: IBarber[] = [];
 		let counter = 0;
 
@@ -107,8 +100,6 @@ export default class DataGeneratorController {
 	}
 
 	public async createCustomer(quantity: number = 1): Promise<ICustomer[]> {
-		await this._sync();
-
 		let users: ICustomer[] = [];
 		let counter = 0;
 
@@ -132,8 +123,6 @@ export default class DataGeneratorController {
 	}
 
 	public async createShop(ownerId: number, quantity: number = 1): Promise<IShop[]> {
-		await this._sync();
-
 		let shops: IShop[] = [];
 		let counter = 0;
 
@@ -161,8 +150,6 @@ export default class DataGeneratorController {
 	}
 
 	public async createService(ownerId: number, shopId: number, quantity: number = 1): Promise<IService[]> {
-		await this._sync();
-
 		let services: IService[] = [];
 		let counter = 0;
 
@@ -195,8 +182,6 @@ export default class DataGeneratorController {
 		serviceAmount: number,
 		quantity: number = 1
 	): Promise<ICustomerBooking[]> {
-		await this._sync();
-
 		let customerBookings: ICustomerBooking[] = [];
 		let counter = 0;
 

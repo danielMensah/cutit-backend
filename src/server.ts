@@ -18,7 +18,7 @@ class Server {
 	}
 
 	async start() {
-		await dbConfig.sync({ logging: false });
+		await dbConfig().sync({ logging: false });
 		this.server.listen(process.env.PORT || 4000).then(({ url }) => {
 			console.log(`🚀 Server ready at ${url}`);
 		});

@@ -7,14 +7,14 @@ import { ShopFactory } from './shop.factory';
 import { ShopAvailabilityFactory } from './shop_availability.factory';
 import sqlConfig from '../utils/sqlConfig';
 
-export const dbConfig = new sequelize.Sequelize('postgres://ytgpabwaislipg:5da0f2d2c7fa21d19c087f8e9e75980249bbc9be11ddc478d9cff6d2eafe8301@ec2-54-247-89-181.eu-west-1.compute.amazonaws.com:5432/d2kflm7gum4g90', sqlConfig);
+export const dbConfig = (db: string = null) => new sequelize.Sequelize('postgres://ytgpabwaislipg:5da0f2d2c7fa21d19c087f8e9e75980249bbc9be11ddc478d9cff6d2eafe8301@ec2-54-247-89-181.eu-west-1.compute.amazonaws.com:5432/d2kflm7gum4g90', sqlConfig);
 
-export const UserModel = UserFactory(dbConfig);
-export const BarberAvailabilityModel = BarberAvailabilityFactory(dbConfig);
-export const CustomerBookingModel = CustomerBookingFactory(dbConfig);
-export const ServiceModel = ServiceFactory(dbConfig);
-export const ShopModel = ShopFactory(dbConfig);
-export const ShopAvailabilityModel = ShopAvailabilityFactory(dbConfig);
+export const UserModel = UserFactory(dbConfig());
+export const BarberAvailabilityModel = BarberAvailabilityFactory(dbConfig());
+export const CustomerBookingModel = CustomerBookingFactory(dbConfig());
+export const ServiceModel = ServiceFactory(dbConfig());
+export const ShopModel = ShopFactory(dbConfig());
+export const ShopAvailabilityModel = ShopAvailabilityFactory(dbConfig());
 
 UserModel.hasMany(BarberAvailabilityModel, {
 	foreignKey: 'barber_id',
